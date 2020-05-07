@@ -2,6 +2,8 @@ const express = require('express');
 
 const server = express();
 
+const port = process.env.PORT || 5000;
+
 const postRouter = require("./posts/postRouter");
 const userRouter = require("./users/userRouter");
 
@@ -27,8 +29,8 @@ function validatePost(req, res, next) {}
 server.use("/api/posts", postRouter)
 server.use("/api/users", userRouter)
 
-server.listen(5000, () => {
-  console.log("Server is listening on http://localhost:5000")
+server.listen(port, () => {
+  console.log(`Server is listening on http://localhost:${port}`)
 })
 
 server.use((req, res) => {

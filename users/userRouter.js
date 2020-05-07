@@ -43,22 +43,9 @@ router.get('/', (req, res) => {
 
 router.get('/:id', validateUserId, (req, res) => {
   const id = req.params.id
-  var users = []
-  db.get()
-  .then(response => {
-    users = response
-    res.status(200).json(response);
-  })
-
-
   db.getById(id)
   .then(post => {
-      if (id > users.length) {
-          res.status(404).json({error: "The post with the specified ID does not exist."})
-      } else {
-        console.log(users)
-          res.status(200).json(post);
-      }
+    res.status(200).json(post);
   })
   .catch(error => {
       res.status(500).json({error: "The posts information could not be retrieved."}).end()
